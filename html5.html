@@ -4,6 +4,9 @@
 <head>
 <meta charset="utf-8">
 <style type="text/css">
+body {
+	margin: 0px;
+}
 #video {
 	height: 300px;
 	width:  400px;
@@ -11,6 +14,13 @@
 #seek {
 	width:  380px;
 	background-color: #696969;
+}
+#ctl {
+	background-color: #999999;
+	width: 400px;
+}
+#pause {
+	margin-left: 5px;
 }
 </style>
 </head>
@@ -21,42 +31,53 @@
 	<p>お使いのブラウザに対応しておりません。ご了承ください。</p>
 </video><br>
 
-<input type="range" id="seek">
-<br>
-<a onClick="play()" id="play">saisei</a>
-<a onClick="pause()">stop</a>
+<div id="ctl">
+	<input type="range" id="seek">
+	<br>
+	<button onclick="play()" id="play">start</button>
+	<button onclick="pause()" id="pause">stop</button>
+	
+</div>
 
 <script type="text/javascript">
-var v 					= document.getElementById("video");
-var seek 				= document.getElementById("seek");
-var play				= document.getElementById("play");
-// v.preload				= "none";
-function play(){
-	v.play();
-}
-function pause(){
-	v.pause();
-}
-
-// スライダー表示
-video.addEventListener("loadedmetadata",function(){
-	seek.min			= seek.value = v.initialTime ||　0;
-	seek.max			= v.duration;
-},false);
-
-// スライダー再生時間とともにスライド
-video.addEventListener("timeupdate",function(){
-	seek.value			= v.currentTime;
-},false);
-
-// 再生・停止ボタン
-play.addEventListener("click",function(){
-	if (v.paused) {
+	var v 					= document.getElementById("video");
+	var seek 				= document.getElementById("seek");
+	var play				= document.getElementById("play");
+	// v.preload				= "none";
+	function play(){
 		v.play();
-	} else {
+	}
+	function pause(){
 		v.pause();
 	}
-}, false);
+
+	// スライダー表示
+	video.addEventListener("loadedmetadata",function(){
+		seek.min			= seek.value = v.initialTime ||　0;
+		seek.max			= v.duration;
+	},false);
+
+	// ボタンのバリューの切り替え
+	video.addEventListener("play",function(){
+		play.textContent	= "pause";
+	},false);
+	video.addEventListener("pause",function(){
+		play.textContent	= "start";
+	},false);
+
+	// スライダー再生時間とともにスライド
+	video.addEventListener("timeupdate",function(){
+		seek.value			= v.currentTime;
+	},false);
+
+	// 再生・停止ボタン
+	play.addEventListener("click",function(){
+		if (v.paused) {
+			v.play();
+		} else {
+			v.pause();
+		}
+	}, false);
 </script>
 </body>
 </html>
