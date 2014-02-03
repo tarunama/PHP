@@ -10,6 +10,11 @@ body {
 #video {
 	height: 300px;
 	width:  400px;
+	float: left;
+}
+#sub {
+	width: 200px;
+	float: left;
 }
 #seek {
 	width:  380px;
@@ -26,24 +31,30 @@ body {
 </head>
 <body>
 <video id="video">
-	<!-- <source src="http://www.tatsuaki.net/tmp/html5_video/sample_ogg.ogv" type="video/ogg"> -->
-	<source src="http://hakuhin.jp/download/js/video/sample_00.webm" type="video/webm">
+	<source src="http://hakuhin.jp/download/js/video/sample_00.webm" id="main">
 	<p>お使いのブラウザに対応しておりません。ご了承ください。</p>
-</video><br>
+</video>
+
+<video id="sub">
+	<source src="movie.mp4" id="second">
+	<p>お使いのブラウザに対応しておりません。ご了承ください。</p>
+</video>
 
 <div id="ctl">
 	<input type="range" id="seek">
 	<br>
 	<button onclick="play()" id="play">start</button>
 	<button onclick="pause()" id="pause">stop</button>
-	
 </div>
 
 <script type="text/javascript">
 	var v 					= document.getElementById("video");
+	var sub					= document.getElementById("sub");
 	var seek 				= document.getElementById("seek");
 	var play				= document.getElementById("play");
-	// v.preload				= "none";
+	var main 				= document.getElementById("main");
+	var second 				= document.getElementById("second");
+
 	function play(){
 		v.play();
 	}
@@ -70,7 +81,7 @@ body {
 		seek.value			= v.currentTime;
 	},false);
 
-	// 再生・停止ボタン
+	// 再生・停止ボタン切り替え
 	play.addEventListener("click",function(){
 		if (v.paused) {
 			v.play();
@@ -78,6 +89,71 @@ body {
 			v.pause();
 		}
 	}, false);
+
+	// seek/vol
+	seek.addEventListener("change",function(){
+		v.currentTime		= this.valueAsNumber;
+	},false);
+
+	// poster click start
+	v.addEventListener("click",function(){
+		if (v.paused){
+			v.play();	
+		} else {
+			v.pause();
+		}
+	},false);
+
+	// change movie
+	sub.addEventListener("click",function(){
+		// if (second.src="http://hakuhin.jp/download/js/video/sample_00.webm") {
+		// 	sub.src 		= "movie.mp4";
+		// 	second.src 		= "movie.mp4";
+		// 	main.src 		= second.src;
+		// } else {
+		// 	sub.src 		= "http://hakuhin.jp/download/js/video/sample_00.webm";
+		// 	second.src 		= "http://hakuhin.jp/download/js/video/sample_00.webm";
+		// 	main.src 		- second.src;
+		// }
+		// if (sub.src="http://hakuhin.jp/download/js/video/sample_00.webm") {
+		// 	sub.src 		= "movie.mp4"
+		// 	v.src 			= "http://hakuhin.jp/download/js/video/sample_00.webm";
+		// } else {
+		// 	sub.src 		= "http://hakuhin.jp/download/js/video/sample_00.webm";
+		// }
+
+		if (sub.src = "http://hakuhin.jp/download/js/video/sample_00.webm") {
+			main.src = second.src;
+		} else {
+			second.src = main.src;
+		}
+		// if (second.src = "http://hakuhin.jp/download/js/video/sample_00.webm") {
+		// 	second.src = "movie.mp4";
+		// 	main.src = "http://hakuhin.jp/download/js/video/sample_00.webm";
+		// } else {
+		// 	second.src = "http://hakuhin.jp/download/js/video/sample_00.webm";			
+		// };
+			v.load();
+			v.play();
+
+		// if (sub.src="movie.mp4") {
+		// 	sub.src 			= "http://hakuhin.jp/download/js/video/sample_00.webm";
+		// 	second.src 			= sub.src;
+		// 	main.src 			= "movie.mp4";
+		// 	v.src 				= main.src;
+		// 	v.load();
+		// 	v.play();
+		// 	exit();
+		// }
+		// if (sub.src ="http://hakuhin.jp/download/js/video/sample_00.webm") {
+		// 	sub.src 			= "movie.mp4";
+		// 	second.src 			= sub.src ;
+		// 	main.src 			= "http://hakuhin.jp/download/js/video/sample_00.webm";
+		// 	v.src 				= main.src;
+		// 	v.load();
+		// 	v.play();			
+		// }
+	},false);
 </script>
 </body>
 </html>
