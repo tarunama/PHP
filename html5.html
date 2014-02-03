@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- HTML5 -->
+<html>
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+#video {
+	height: 300px;
+	width:  400px;
+}
+#seek {
+	width:  380px;
+	background-color: #696969;
+}
+</style>
+</head>
+<body>
+<video id="video">
+	<!-- <source src="http://www.tatsuaki.net/tmp/html5_video/sample_ogg.ogv" type="video/ogg"> -->
+	<source src="http://hakuhin.jp/download/js/video/sample_00.webm" type="video/webm">
+	<p>お使いのブラウザに対応しておりません。ご了承ください。</p>
+</video><br>
+
+<input type="range" id="seek">
+<br>
+<a onClick="play()" id="play">saisei</a>
+<a onClick="pause()">stop</a>
+
+<script type="text/javascript">
+var v 					= document.getElementById("video");
+var seek 				= document.getElementById("seek");
+var play				= document.getElementById("play");
+// v.preload				= "none";
+function play(){
+	v.play();
+}
+function pause(){
+	v.pause();
+}
+
+// スライダー表示
+video.addEventListener("loadedmetadata",function(){
+	seek.min			= seek.value = v.initialTime ||　0;
+	seek.max			= v.duration;
+},false);
+
+// スライダー再生時間とともにスライド
+video.addEventListener("timeupdate",function(){
+	seek.value			= v.currentTime;
+},false);
+
+// 再生・停止ボタン
+play.addEventListener("click",function(){
+	if (v.paused) {
+		v.play();
+	} else {
+		v.pause();
+	}
+}, false);
+</script>
+</body>
+</html>
