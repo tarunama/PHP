@@ -1,21 +1,21 @@
 <?php
-    
-for ($i = 2; $i < 10; $i++) {
-    if($i == 2){
-        echo $i;
-    }
-    
-    if($i % 2 == 0) {continue;}
-    
-    $flg = 0;
-    
-    for($j = 3; $j < $i; $j++){
-        if($i % $j !== 0){
-            $flg = 1;    
+function prime($n) {
+    $ary = array();
+    for ($i = 2; $i < $n + 1; $i++) {
+        $flg = 1;
+        for ($j = 2; $j < $i; $j++) {
+            if ($i % $j == 0) {
+                $flg = 0;
+                break;
+            }
+        }
+        if ($flg) {
+            $ary[] = $i;
         }
     }
-    
-    if($flg){
-        echo " " . $i;
-    }
+    return $ary;
 }
+$prm_ary = prime(1000);
+for ($i = 0; $i < count($pry_ary); $i++) {
+    if (strlen($pry_ary[$i]) < 2) {continue;}
+    
