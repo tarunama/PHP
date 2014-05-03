@@ -1,4 +1,5 @@
 <?php
+// 素数を求める関数
 function prime($n) {
     $ary = array();
     for ($i = 2; $i < $n + 1; $i++) {
@@ -15,7 +16,17 @@ function prime($n) {
     }
     return $ary;
 }
+
 $prm_ary = prime(1000);
-for ($i = 0; $i < count($pry_ary); $i++) {
-    if (strlen($pry_ary[$i]) < 2) {continue;}
-    
+
+for ($i = count($prm_ary) - 1; 0 < $i; $i--) {
+    $compare_ary = array();
+    if (strlen($prm_ary[$i]) < 2) {continue;}
+    foreach (str_split($prm_ary[$i]) as $val) {
+        $compare_ary[] = $val;
+    }
+    if ($compare_ary[0] == $compare_ary[2]) {
+        echo $prm_ary[$i];
+        break;
+    }
+}
