@@ -2,9 +2,26 @@
 $content = fopen($argv[1], "r");
 
 while (($line = fgets($content)) ==! false) {
-    $ary[] = preg_split("/[\s]/", $line);
-    $pattern = preg_split("/[\+\-]/", $ary[0][1]);
-    var_dump($pattern);
+    //$ary = array();
+    $ary = preg_split("/[\s]/", $line);
+    $str = $ary[0];
+    
+    $pattern = preg_split("/[\+\-]/", $ary[1]);
+    
+    foreach (str_split($str) as $val) {
+        //右辺と左辺に分ける
+        
+        //+,-の判断
+        if (strpos($ary[1], "+")) {
+            
+        } else {
+            
+        }
+    }
+    
+    
+    
+    var_dump($number);
 }
 
 fclose($content);
