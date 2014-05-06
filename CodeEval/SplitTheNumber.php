@@ -2,37 +2,30 @@
 $content = fopen($argv[1], "r");
 
 while (($line = fgets($content)) ==! false) {
-    //$ary = array();
     $ary = preg_split("/[\s]/", $line);
-    $str = $ary[0];
+    $str = $ary[1];
     
     $pattern = preg_split("/[\+\-]/", $ary[1]);
     
-    foreach (str_split($str) as $val) {
-        //右辺と左辺に分ける
-        
-        //+,-の判断
-        if (strpos($ary[1], "+")) {
-            
-        } else {
-            
-        }
+    foreach (str_split($pattern[0]) as $val) {
+        $left[] = $val;
     }
-    
-    
-    
-    var_dump($number);
+    foreach (str_split($pattern[1]) as $val) {
+        $right[] = $val;
+    }
+    $leftnumber     = substr($ary[0], 0, count($left));
+    $rightnumber    = substr($ary[0], count($left));
+
+    if (strstr($ary[1], "+")) {
+        echo $leftnumber + $rightnumber . PHP_EOL;
+    } elseif (strstr($ary[1], "-")) {
+        echo $leftnumber - $rightnumber . PHP_EOL;
+    }
+
+    unset($left);
+    unset($right);
+    unset($rightnumber);
+    unset($leftnumber);
 }
 
 fclose($content);
-/*
-foreach ($ary[1] as $val) {
-    if ($val === "+" || $val === "-") {
-
-    }
-}
-foreach ($ary as $val) {
-    $pattern = preg_split("[\+-]", $val);
-}
-
-*/
