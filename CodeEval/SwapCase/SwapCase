@@ -1,0 +1,19 @@
+<?php
+$fop = fopen($argv[1], "r");
+
+while($line = fgets($fop)) {
+    foreach(str_split($line) as $val) {
+        if(ctype_upper($val)) {
+            $afval = strtolower($val);
+        } elseif(ctype_lower($val)) {
+            $afval = strtoupper($val);
+        } else {
+            echo $val;
+            continue;
+        }
+        echo $afval;
+    }
+    echo PHP_EOL;
+}
+
+fclose($fop);
