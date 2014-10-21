@@ -1,18 +1,19 @@
 <?php
+
 // 素数を求める関数
-function prime($n) {
+function prime($n)
+{
     $ary = array();
-    for ($i = 2; $i < $n + 1; $i++) {
-        $flg = 1;
+
+    for ($num = 2; $num < $n + 1; $num++) {
+        $flg = true;
         for ($j = 2; $j < $i; $j++) {
-            if ($i % $j == 0) {
-                $flg = 0;
+            if ($i % $j === 0) {
+                $flg = false;
                 break;
             }
         }
-        if ($flg) {
-            $ary[] = $i;
-        }
+        if ($flg) { $ary[] = $i; }
     }
     return $ary;
 }
@@ -21,11 +22,13 @@ $prm_ary = prime(1000);
 
 for ($i = count($prm_ary) - 1; 0 < $i; $i--) {
     $compare_ary = array();
-    if (strlen($prm_ary[$i]) < 2) {continue;}
+    if (strlen($prm_ary[$i]) < 2) { continue; }
+
     foreach (str_split($prm_ary[$i]) as $val) {
         $compare_ary[] = $val;
     }
-    if ($compare_ary[0] == $compare_ary[2]) {
+
+    if ($compare_ary[0] === $compare_ary[2]) {
         echo $prm_ary[$i];
         break;
     }
