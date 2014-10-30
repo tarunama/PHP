@@ -28,5 +28,4 @@ function checkPrime ($number)
 
 $prm_ary = SumOfNumbers(1000);
 
-//$sum = array_sum($prm_ary);
 echo array_sum($prm_ary);
