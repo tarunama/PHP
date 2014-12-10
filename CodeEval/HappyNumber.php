@@ -1,25 +1,31 @@
 <?php
 $fh = fopen($argv[1], 'r');
 
-while ($test = fgets($fh)) {
-    $line = trim($test);
-    if ($line < 0) { continue; }
-    
-    $counter = 0;
+function happyNumber($num) {
     $result = 0;
-    while($counter < 10) {
+    $counter = 0;
+    while($counter < 50) {
         $ary = array();
-        $int_ary = str_split($line);
+        $int_ary = str_split($num);
         foreach ($int_ary as $val) {
+            // 5.6 から ** 2
             $ary[] = $val * $val;
         }
-        $line = array_sum($ary);
-        if ($line === 1) {
+
+        $num = array_sum($ary);
+        //var_dump($eleSum);
+        if ($num === 1) {
             $result = 1;
             break;
         }
         $counter++;
-        $int_ary = $line;
+        $int_ary = $num;
     }
-    echo $result . PHP_EOL;
+    return $result;
+}
+
+while ($test = fgets($fh)) {
+    $line = trim($test);
+    
+    echo happyNumber($line) . PHP_EOL;
 }
