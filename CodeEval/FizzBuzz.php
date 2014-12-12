@@ -1,25 +1,20 @@
 <?php
-/*
-question:https://www.codeeval.com/open_challenges/1/
-*/
 
 $fcontents = fopen($argv[1], 'r');
 
-while (($input_lines = fgets($fcontents)) !== false) {
+function FizzBuzz($fst_int, $sec_int, $int_num)
+{
+    $fizz = function($n) use ($fst_int) { return ($n % $fst_int === 0); };
+    $buzz = function($n) use ($sec_int) { return ($n % $sec_int === 0); };
 
-    list($fst_int, $sec_int, $int_num) = explode(' ', trim($input_lines));
-    
     for ($i = 1; $i < $int_num + 1; $i++) {
-        $f = $i % $fst_int;
-        $b = $i % $sec_int;
-
-        if (($f === 0) && ($b === 0)) {
+        if ($fizz($i) && $buzz($i)) {
             echo 'FB ';
             continue;
-        } elseif ($f === 0) {
+        } elseif ($fizz($i)) {
             echo 'F ';
             continue;
-        } elseif ($b === 0) {
+        } elseif ($buzz($i)) {
             echo 'B ';
             continue;
         } else {
@@ -28,4 +23,9 @@ while (($input_lines = fgets($fcontents)) !== false) {
     }
     echo PHP_EOL;
 }
-fclose($fcontents);
+
+while ( ($input_lines = fgets($fcontents)) ) {
+    list($fst_int, $sec_int, $int_num) = explode(' ', trim($input_lines));
+
+    FizzBuzz($fst_int, $sec_int, $int_num);
+}
