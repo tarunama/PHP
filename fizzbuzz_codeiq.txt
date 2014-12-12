@@ -1,0 +1,27 @@
+.仕様言語　PHP
+
+・ソースコード	
+
+<?php
+
+function FizzBuzz($number)
+{
+    $fizzbuzz = function($num) { return ($num % 15 === 0); };
+    $fizz = function($num) { return ($num % 5 === 0); };
+    $buzz = function($num) { return ($num % 3 === 0); };
+    
+	for ($i = 1; $i < $number; $i++) {
+        if ($fizzbuzz($i)) {
+            echo 'Fizz Buzz';
+        } elseif ($fizz($i)) {
+            echo 'Fizz';
+        } elseif ($buzz($i)) {
+            echo 'Buzz';
+        } else {
+            echo $i;
+        }
+        echo ',';
+	}
+}
+
+FizzBuzz(100);

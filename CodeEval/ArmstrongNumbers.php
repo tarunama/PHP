@@ -1,19 +1,23 @@
 <?php
 $fh = fopen($argv[1], 'r');
 
-while ($test = fgets($fh)) {
-    $inputNum = trim($test);
-    $strArray = str_split($inputNum);
-    $power = strlen($inputNum);
-    
+function armstrongNumber($num)
+{
+    $strArray = str_split($num);
+    $power = strlen($num);
+
     $result = 0;
     foreach ($strArray as $val) {
         $result += pow($val, $power);
     }
       
-    if ((int)$inputNum === $result) {
-        echo 'True' . PHP_EOL;
+    if ((int)$num === $result) {
+        return 'True';
     } else {
-        echo 'False' . PHP_EOL;
+        return 'False';
     }
+}
+
+while ($test = fgets($fh)) {
+    echo armstrongNumber(trim($test)) . PHP_EOL;
 }
