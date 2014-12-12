@@ -1,6 +1,7 @@
 <?php
 
-function f_s($num_ary) {
+function f_s($num_ary)
+{
     $num_ary['nextNum'] = $num_ary['preNum'];
     $num_ary['num'] += $num_ary['nextNum'];
     $num_ary['preNum'] = $num_ary['num'] - $num_ary['nextNum'];
