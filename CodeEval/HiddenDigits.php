@@ -1,11 +1,11 @@
 <?php
 $fh = fopen($argv[1], 'r');
 
-while ($line = fgets($fh)) {
-    $str = preg_replace('/[\n\s\r]/', '', trim($line));
-    $ary = str_split($str);
+while ($line = fgets($fh))
+{
+    $ary = str_split(trim($line));
+
     $result = '';
-    
     foreach ($ary as $val) {
         if ($val === 'a') { $result .= 0; }
         elseif ($val === 'b') { $result .= 1; }
@@ -20,10 +20,10 @@ while ($line = fgets($fh)) {
         elseif (preg_match('/[0-9]/', $val)) { $result .= $val; }
     }
 
-    if (strlen($result) === 0) {
-        echo 'NONE';
-    } else {
+    if (strlen($result)) {
         echo $result;
+    } else {
+        echo "NONE";
     }
     echo PHP_EOL;
 }
