@@ -2,16 +2,6 @@
 
 Class FizzBuzz
 {
-    private $fst_int;
-    private $scd_int;
-    private $times;
-
-    public function __construct() {
-        $this->scd_int   = $scd_int;
-        $this->fst_int = $fst_int;
-        $this->times = $times;
-    }
-
     public function judgeFizzBuzz($n, $f_int, $s_int) {
         if ($n % $f_int === 0 && $n % $s_int === 0) {
             return 'FB ';
@@ -24,8 +14,7 @@ Class FizzBuzz
         }
     }
 
-    public function fizzBuzz($fst_int, $scd_int, $times) {
-        $result = '';
+    public function fizzBuzz($fst_int = null, $scd_int = null, $times = null) {
         for ($i = 1; $i <= $times; $i++) {
             $result .= $this->judgeFizzBuzz($i, $fst_int, $scd_int);
         }
