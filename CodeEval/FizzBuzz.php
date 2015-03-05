@@ -2,12 +2,19 @@
 
 Class FizzBuzz
 {
+    private function divFizzBuzz ($n, $divNum) {
+        return $n % $divNum === 0;
+    }
+
     public function judgeFizzBuzz($n, $f_int, $s_int) {
-        if ($n % $f_int === 0 && $n % $s_int === 0) {
+        $fizz = $this->divFizzBuzz($n, $f_int);
+        $buzz = $this->divFizzBuzz($n, $s_int);
+
+        if ($fizz && $buzz) {
             return 'FB ';
-        } elseif($n % $f_int === 0) {
+        } elseif($fizz) {
             return 'F ';
-        } elseif ($n % $s_int === 0) {
+        } elseif ($buzz) {
             return 'B ';
         } else {
             return $n . ' ';
@@ -28,5 +35,6 @@ $fb = new FizzBuzz();
 
 while ( ($input_lines = fgets($fcontents)) ) {
     list($fst_int, $scd_int, $times) = explode(' ', trim($input_lines));
+
     echo $fb->fizzBuzz($fst_int, $scd_int, $times) . PHP_EOL;
 }
