@@ -4,28 +4,31 @@ $fh = fopen($argv[1], 'r');
 function happyNumber($num) {
     $result = 0;
     $counter = 0;
-    while($counter < 50) {
-        $ary = array();
-        $int_ary = str_split($num);
-        foreach ($int_ary as $val) {
-            // 5.6 から ** 2
-            $ary[] = $val * $val;
+    $int_ary = str_split($num);
+    $power = function ($n) {
+        $ary = str_split($n);
+        $len = count($ary);
+        $result = 0;
+        for ($i = 0; $i < $len; $i++) {
+            $result += $ary[$i] * $ary[$i];
         }
+        return $result;
+    };
 
-        $num = array_sum($ary);
-        //var_dump($eleSum);
-        if ($num === 1) {
+    while($counter < 30) {
+        $nums = array_map($power, $int_ary);
+        if ( 1 === array_sum($nums) ) {
             $result = 1;
             break;
         }
         $counter++;
-        $int_ary = $num;
+        $int_ary = $nums;
     }
     return $result;
 }
 
 while ($test = fgets($fh)) {
     $line = trim($test);
-    
+
     echo happyNumber($line) . PHP_EOL;
 }

@@ -1,31 +1,40 @@
 <?php
 
-$fcontents = fopen($argv[1], 'r');
-
-function FizzBuzz($fst_int, $sec_int, $int_num)
+Class FizzBuzz
 {
-    $fizz = function($n) use ($fst_int) { return ($n % $fst_int === 0); };
-    $buzz = function($n) use ($sec_int) { return ($n % $sec_int === 0); };
+    private function divFizzBuzz ($n, $divNum) {
+        return $n % $divNum === 0;
+    }
 
-    for ($i = 1; $i < $int_num + 1; $i++) {
-        if ($fizz($i) && $buzz($i)) {
-            echo 'FB ';
-            continue;
-        } elseif ($fizz($i)) {
-            echo 'F ';
-            continue;
-        } elseif ($buzz($i)) {
-            echo 'B ';
-            continue;
+    public function judgeFizzBuzz($n, $f_int, $s_int) {
+        $fizz = $this->divFizzBuzz($n, $f_int);
+        $buzz = $this->divFizzBuzz($n, $s_int);
+
+        if ($fizz && $buzz) {
+            return 'FB ';
+        } elseif($fizz) {
+            return 'F ';
+        } elseif ($buzz) {
+            return 'B ';
         } else {
-            echo $i . ' ';   
+            return $n . ' ';
         }
     }
-    echo PHP_EOL;
+
+    public function fizzBuzz($fst_int = null, $scd_int = null, $times = null) {
+        for ($i = 1; $i <= $times; $i++) {
+            $result .= $this->judgeFizzBuzz($i, $fst_int, $scd_int);
+        }
+        return $result;
+    }
 }
 
-while ( ($input_lines = fgets($fcontents)) ) {
-    list($fst_int, $sec_int, $int_num) = explode(' ', trim($input_lines));
+$fcontents = fopen($argv[1], 'r');
 
-    FizzBuzz($fst_int, $sec_int, $int_num);
+$fb = new FizzBuzz();
+
+while ( ($input_lines = fgets($fcontents)) ) {
+    list($fst_int, $scd_int, $times) = explode(' ', trim($input_lines));
+
+    echo $fb->fizzBuzz($fst_int, $scd_int, $times) . PHP_EOL;
 }

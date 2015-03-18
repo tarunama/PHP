@@ -18,8 +18,8 @@ function SumOfNumbers ($n)
 
 function checkPrime ($number)
 {
-    for ($j = 2; $j < $number; $j++) {
-        if ($number % $j === 0) {
+    for ($i = 1; $i < $number; $i++) {
+        if ($number % $j === 0 && $i === 1) {
             return false;
         }
     }
