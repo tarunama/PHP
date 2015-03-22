@@ -216,6 +216,12 @@ pip-log.txt
 
 CodeEval/main.cpp
 
+<<<<<<< HEAD
 CodeEval/cubic解答_山本拓弥.txt
 
 test.php
+=======
+test.php
+
+CodeEval/cubic解答_山本拓弥.txt
+>>>>>>> origin/master

@@ -1,11 +1,10 @@
 <?php
 
-// 素数を求める関数
 function prime($n)
 {
     $ary = array();
 
-    for ($num = 2; $num < $n + 1; $num++) {
+    for ($num = 2; $num <= $n; $num++) {
         $flg = true;
         for ($j = 2; $j < $i; $j++) {
             if ($i % $j === 0) {

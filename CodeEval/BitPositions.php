@@ -1,11 +1,13 @@
 <?php
 $fh = fopen($argv[1], 'r');
 
-while ( fscanf($fh, "%d,%d,%d", $n, $p1, $p2) )
+while ($test = fgets($fh))
 {
-    $bitAry = strrev( decbin($n) );
+    list($n, $p1, $p2) = explode(',', $test);
 
-    if ($bitAry[$p1 - 1] === $bitAry[$p2 - 1]) {
+    $bitAry = strrev( decbin((int)$n) );
+
+    if ($bitAry[(int)$p1 - 1] === $bitAry[(int)$p2 - 1]) {
         echo 'true';
     } else {
         echo 'false';
