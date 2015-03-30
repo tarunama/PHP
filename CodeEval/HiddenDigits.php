@@ -21,23 +21,24 @@ Class HiddenDigits
     public function hiddenDigits ($ary = array())
     {
         $result = '';
-        foreach ($ary as $val) {
-            $result .= $this->alphaToDigit($val);
+        foreach ($ary as $str) {
+            $result .= $this->alphaToDigit($str);
         }
         return $result;
     }
 
-    public function judgeEmpty ($str)
+    public function isEmpty ($str)
     {
-        return (strlen($str)) ? $str : "NONE";
+        return (!empty($str)) ? $str : "NONE";
     }
 }
 
 $hd = new HiddenDigits();
 
-while ($line = fgets($fh))
+while ( false === ($line = fgets($fh)) )
 {
     $ary       = str_split(trim($line));
     $resultStr = $hd->hiddenDigits($ary);
-    echo $hd->judgeEmpty($resultStr) . PHP_EOL;
+
+    echo $hd->isEmpty($resultStr) . PHP_EOL;
 }
